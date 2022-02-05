@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		643C6AAB27AEF315002AB0C8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C6AAA27AEF315002AB0C8 /* ProfileView.swift */; };
 		64E5AF8D27AD869A005F2A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E5AF8C27AD869A005F2A79 /* AppDelegate.swift */; };
 		64E5AF8F27AD869A005F2A79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E5AF8E27AD869A005F2A79 /* SceneDelegate.swift */; };
 		64E5AF9127AD869A005F2A79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E5AF9027AD869A005F2A79 /* ViewController.swift */; };
@@ -14,12 +15,12 @@
 		64E5AF9627AD869A005F2A79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64E5AF9527AD869A005F2A79 /* Assets.xcassets */; };
 		64E5AF9927AD869A005F2A79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E5AF9727AD869A005F2A79 /* LaunchScreen.storyboard */; };
 		64E5AFA127AD893E005F2A79 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64E5AFA027AD893E005F2A79 /* ProfileView.xib */; };
-		64E5AFA327AD9480005F2A79 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E5AFA227AD9480005F2A79 /* ProfileView.swift */; };
 		64E5AFA727AD9BAD005F2A79 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E5AFA627AD9BAD005F2A79 /* Profile.storyboard */; };
 		64E5AFA927AD9BE4005F2A79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E5AFA827AD9BE4005F2A79 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		643C6AAA27AEF315002AB0C8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		64E5AF8927AD869A005F2A79 /* Netology_IB_Instruments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Netology_IB_Instruments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64E5AF8C27AD869A005F2A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64E5AF8E27AD869A005F2A79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,7 +30,6 @@
 		64E5AF9827AD869A005F2A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64E5AF9A27AD869A005F2A79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64E5AFA027AD893E005F2A79 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
-		64E5AFA227AD9480005F2A79 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		64E5AFA627AD9BAD005F2A79 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		64E5AFA827AD9BE4005F2A79 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,9 +71,9 @@
 				64E5AFA027AD893E005F2A79 /* ProfileView.xib */,
 				64E5AFA627AD9BAD005F2A79 /* Profile.storyboard */,
 				64E5AFA827AD9BE4005F2A79 /* ProfileViewController.swift */,
-				64E5AFA227AD9480005F2A79 /* ProfileView.swift */,
 				64E5AF9527AD869A005F2A79 /* Assets.xcassets */,
 				64E5AF9727AD869A005F2A79 /* LaunchScreen.storyboard */,
+				643C6AAA27AEF315002AB0C8 /* ProfileView.swift */,
 				64E5AF9A27AD869A005F2A79 /* Info.plist */,
 			);
 			path = Netology_IB_Instruments;
@@ -152,9 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64E5AFA327AD9480005F2A79 /* ProfileView.swift in Sources */,
 				64E5AF9127AD869A005F2A79 /* ViewController.swift in Sources */,
 				64E5AFA927AD9BE4005F2A79 /* ProfileViewController.swift in Sources */,
+				643C6AAB27AEF315002AB0C8 /* ProfileView.swift in Sources */,
 				64E5AF8D27AD869A005F2A79 /* AppDelegate.swift in Sources */,
 				64E5AF8F27AD869A005F2A79 /* SceneDelegate.swift in Sources */,
 			);
