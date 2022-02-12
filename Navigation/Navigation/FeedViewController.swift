@@ -15,6 +15,7 @@ class FeedViewController: UIViewController {
         let openPostButton = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 50))
         openPostButton.setTitle("Open post", for: .normal)
         openPostButton.setTitleColor(.systemBlue, for: .normal)
+        openPostButton.clipsToBounds = true
         openPostButton.addTarget(self, action: #selector(openPostButtonTapped), for: .touchUpInside)
         self.view.addSubview(openPostButton)
     }

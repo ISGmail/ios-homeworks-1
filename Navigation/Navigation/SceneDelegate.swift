@@ -13,13 +13,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return } // убедились, что windowScene есть
+        guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        let tabBar = TabBarController() // инициализировали таб бар
+        let tabBar = TabBarController()
 
-        self.window?.rootViewController = tabBar // указали таб бар корневым
-        self.window?.makeKeyAndVisible() // показали окно
+        self.window?.rootViewController = tabBar
+        self.window?.makeKeyAndVisible()
         window?.windowScene = windowScene
     }
 
