@@ -9,13 +9,18 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
+    private lazy var alertButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 100, y: 400, width: 200, height: 50))
+        button.setTitle("Alert", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(alertButtonTapped), for: .touchUpInside)
+        button.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin, .flexibleLeftMargin, .flexibleRightMargin]
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemIndigo
-        let alertButton = UIButton(frame: CGRect(x: 100, y: 400, width: 200, height: 50))
-        alertButton.setTitle("Alert", for: .normal)
-        alertButton.setTitleColor(.white, for: .normal)
-        alertButton.addTarget(self, action: #selector(alertButtonTapped), for: .touchUpInside)
         self.view.addSubview(alertButton)
     }
 
