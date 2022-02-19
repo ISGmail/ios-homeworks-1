@@ -68,12 +68,12 @@
 				64E5AF8E27AD869A005F2A79 /* SceneDelegate.swift */,
 				64E5AF9027AD869A005F2A79 /* ViewController.swift */,
 				64E5AF9227AD869A005F2A79 /* Main.storyboard */,
-				64E5AFA027AD893E005F2A79 /* ProfileView.xib */,
 				64E5AFA627AD9BAD005F2A79 /* Profile.storyboard */,
 				64E5AFA827AD9BE4005F2A79 /* ProfileViewController.swift */,
+				64E5AFA027AD893E005F2A79 /* ProfileView.xib */,
+				643C6AAA27AEF315002AB0C8 /* ProfileView.swift */,
 				64E5AF9527AD869A005F2A79 /* Assets.xcassets */,
 				64E5AF9727AD869A005F2A79 /* LaunchScreen.storyboard */,
-				643C6AAA27AEF315002AB0C8 /* ProfileView.swift */,
 				64E5AF9A27AD869A005F2A79 /* Info.plist */,
 			);
 			path = Netology_IB_Instruments;

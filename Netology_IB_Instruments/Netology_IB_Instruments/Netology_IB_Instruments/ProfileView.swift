@@ -9,7 +9,6 @@ import UIKit
 
 class ProfileView: UIView {
 
-
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dateOfBirthLabel: UILabel!
