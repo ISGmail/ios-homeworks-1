@@ -18,6 +18,10 @@ class ProfileHeaderView: UIView {
         super.init(coder: coder)
     }
 
+    let profileTitle = UILabel()
+    let statusTextView = UITextView()
+    let showStatusButton = UIButton()
+
     private func setupView() {
         let catImage = UIImage(named: "cat")
         let catImageView = UIImageView(image: catImage!)
@@ -40,7 +44,6 @@ class ProfileHeaderView: UIView {
 
         NSLayoutConstraint.activate(constraintsForImage)
 
-        let profileTitle = UILabel()
         profileTitle.text = "Some Profile Title"
         profileTitle.textAlignment = .left
         profileTitle.font = UIFont.boldSystemFont(ofSize: 18)
@@ -51,15 +54,16 @@ class ProfileHeaderView: UIView {
             profileTitle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 27),
             profileTitle.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             profileTitle.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 120),
-            profileTitle.heightAnchor.constraint(equalToConstant: 30)]
+            profileTitle.heightAnchor.constraint(equalToConstant: 30)
+        ]
 
         NSLayoutConstraint.activate(constraintsForTitle)
 
-        let statusTextView = UITextView()
         statusTextView.backgroundColor = .lightGray
         statusTextView.font = .systemFont(ofSize: 14)
         statusTextView.textColor = .gray
         statusTextView.text = "Waiting for something..."
+        statusTextView.isEditable = false
         self.addSubview(statusTextView)
 
         statusTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,8 +71,36 @@ class ProfileHeaderView: UIView {
             statusTextView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 57),
             statusTextView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             statusTextView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 120),
-            statusTextView.heightAnchor.constraint(equalToConstant: 30)]
+            statusTextView.heightAnchor.constraint(equalToConstant: 30)
+        ]
 
         NSLayoutConstraint.activate(constraintsForTextView)
+
+        showStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        showStatusButton.setTitle("Set Status", for: .normal)
+        showStatusButton.backgroundColor = .systemBlue
+        showStatusButton.layer.cornerRadius = 4
+        showStatusButton.layer.shadowColor = UIColor.black.cgColor
+        showStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+        showStatusButton.layer.shadowRadius = 4
+        showStatusButton.layer.shadowOpacity = 0.7
+        self.addSubview(showStatusButton)
+
+        showStatusButton.translatesAutoresizingMaskIntoConstraints = false
+        let constraintsForButton = [
+            showStatusButton.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 132),
+            showStatusButton.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            showStatusButton.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            showStatusButton.heightAnchor.constraint(equalToConstant: 50)
+        ]
+
+        NSLayoutConstraint.activate(constraintsForButton)
     }
+    @objc func buttonPressed(sender: UIButton) {
+            if let status = statusTextView.text {
+            print(status)
+            } else {
+                print("No value found")
+            }
+        }
 }
