@@ -21,6 +21,7 @@ class ProfileHeaderView: UIView {
     let profileTitle = UILabel()
     let statusTextView = UITextView()
     let showStatusButton = UIButton()
+    var textField = UITextField()
 
     private func setupView() {
         let catImage = UIImage(named: "cat")
@@ -41,7 +42,6 @@ class ProfileHeaderView: UIView {
             catImageView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 16),
             catImageView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor)
         ]
-
         NSLayoutConstraint.activate(constraintsForImage)
 
         profileTitle.text = "Some Profile Title"
@@ -56,7 +56,6 @@ class ProfileHeaderView: UIView {
             profileTitle.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 120),
             profileTitle.heightAnchor.constraint(equalToConstant: 30)
         ]
-
         NSLayoutConstraint.activate(constraintsForTitle)
 
         statusTextView.backgroundColor = .lightGray
@@ -73,8 +72,33 @@ class ProfileHeaderView: UIView {
             statusTextView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 120),
             statusTextView.heightAnchor.constraint(equalToConstant: 30)
         ]
-
         NSLayoutConstraint.activate(constraintsForTextView)
+
+        textField.placeholder = "Waiting for status..."
+        textField.adjustsFontSizeToFitWidth = true
+        textField.minimumFontSize = 0.5
+        textField.returnKeyType = .done
+        textField.autocapitalizationType = .words
+        textField.font = .systemFont(ofSize: 15)
+        textField.textColor = .systemGray2
+        textField.backgroundColor = .white
+        textField.borderStyle = .none
+        textField.returnKeyType = .next
+        textField.keyboardType = .default
+        textField.clearButtonMode = .always
+        textField.layer.cornerRadius = 7
+    //        textField.alpha = 0
+        self.addSubview(textField)
+
+
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        let constraintsForTextField = [
+            textField.topAnchor.constraint(equalTo: self.statusTextView.bottomAnchor, constant: 10),
+            textField.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            textField.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 120),
+            textField.heightAnchor.constraint(equalToConstant: 30)
+        ]
+        NSLayoutConstraint.activate(constraintsForTextField)
 
         showStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         showStatusButton.setTitle("Set Status", for: .normal)
@@ -88,13 +112,14 @@ class ProfileHeaderView: UIView {
 
         showStatusButton.translatesAutoresizingMaskIntoConstraints = false
         let constraintsForButton = [
-            showStatusButton.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 132),
+            showStatusButton.topAnchor.constraint(equalTo: self.textField.bottomAnchor, constant: 10),
             showStatusButton.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             showStatusButton.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             showStatusButton.heightAnchor.constraint(equalToConstant: 50)
         ]
-
         NSLayoutConstraint.activate(constraintsForButton)
+
+
     }
     @objc func buttonPressed(sender: UIButton) {
             if let status = statusTextView.text {
