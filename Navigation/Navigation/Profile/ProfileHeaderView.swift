@@ -18,43 +18,44 @@ class ProfileHeaderView: UIView {
         super.init(coder: coder)
     }
 
-    let profileTitle = UILabel()
+    let fullNameLabel = UILabel()
     let statusTextView = UITextView()
-    let showStatusButton = UIButton()
-    var textField = UITextField()
+    let setStatusButton = UIButton()
+    var statusTextField = UITextField()
+    private var statusText: String = ""
 
     private func setupView() {
         let catImage = UIImage(named: "cat")
-        let catImageView = UIImageView(image: catImage!)
+        let avatarImageView = UIImageView(image: catImage!)
 
-        catImageView.contentMode = UIView.ContentMode.scaleAspectFit
-        catImageView.center = self.center
-        catImageView.layer.cornerRadius = 50
-        catImageView.clipsToBounds = true
-        catImageView.layer.borderWidth = 3
-        catImageView.layer.borderColor = UIColor.white.cgColor
-        self.addSubview(catImageView)
+        avatarImageView.contentMode = UIView.ContentMode.scaleAspectFit
+        avatarImageView.center = self.center
+        avatarImageView.layer.cornerRadius = 50
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.borderWidth = 3
+        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        self.addSubview(avatarImageView)
 
-        catImageView.translatesAutoresizingMaskIntoConstraints = false
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         let constraintsForImage = [
-            catImageView.widthAnchor.constraint(equalToConstant: 100),
-            catImageView.heightAnchor.constraint(equalToConstant: 100),
-            catImageView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 16),
-            catImageView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor)
+            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+            avatarImageView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor)
         ]
         NSLayoutConstraint.activate(constraintsForImage)
 
-        profileTitle.text = "Some Profile Title"
-        profileTitle.textAlignment = .left
-        profileTitle.font = UIFont.boldSystemFont(ofSize: 18)
-        self.addSubview(profileTitle)
+        fullNameLabel.text = "Some Profile Title"
+        fullNameLabel.textAlignment = .left
+        fullNameLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        self.addSubview(fullNameLabel)
 
-        profileTitle.translatesAutoresizingMaskIntoConstraints = false
+        fullNameLabel.translatesAutoresizingMaskIntoConstraints = false
         let constraintsForTitle = [
-            profileTitle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 27),
-            profileTitle.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            profileTitle.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 120),
-            profileTitle.heightAnchor.constraint(equalToConstant: 30)
+            fullNameLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 27),
+            fullNameLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            fullNameLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 120),
+            fullNameLabel.heightAnchor.constraint(equalToConstant: 30)
         ]
         NSLayoutConstraint.activate(constraintsForTitle)
 
@@ -74,58 +75,67 @@ class ProfileHeaderView: UIView {
         ]
         NSLayoutConstraint.activate(constraintsForTextView)
 
-        textField.placeholder = "Waiting for status..."
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 0.5
-        textField.returnKeyType = .done
-        textField.autocapitalizationType = .words
-        textField.font = .systemFont(ofSize: 15)
-        textField.textColor = .systemGray2
-        textField.backgroundColor = .white
-        textField.borderStyle = .none
-        textField.returnKeyType = .next
-        textField.keyboardType = .default
-        textField.clearButtonMode = .always
-        textField.layer.cornerRadius = 7
+        statusTextField.placeholder = "Waiting for status..."
+        statusTextField.adjustsFontSizeToFitWidth = true
+        statusTextField.minimumFontSize = 0.5
+        statusTextField.returnKeyType = .done
+        statusTextField.autocapitalizationType = .words
+        statusTextField.font = .systemFont(ofSize: 15)
+        statusTextField.textColor = .systemGray2
+        statusTextField.backgroundColor = .white
+        statusTextField.borderStyle = .none
+        statusTextField.returnKeyType = .next
+        statusTextField.keyboardType = .default
+        statusTextField.clearButtonMode = .always
+        statusTextField.layer.cornerRadius = 7
+        statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
     //        textField.alpha = 0
-        self.addSubview(textField)
+        self.addSubview(statusTextField)
 
 
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        statusTextField.translatesAutoresizingMaskIntoConstraints = false
         let constraintsForTextField = [
-            textField.topAnchor.constraint(equalTo: self.statusTextView.bottomAnchor, constant: 10),
-            textField.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            textField.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 120),
-            textField.heightAnchor.constraint(equalToConstant: 30)
+            statusTextField.topAnchor.constraint(equalTo: self.statusTextView.bottomAnchor, constant: 10),
+            statusTextField.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            statusTextField.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 120),
+            statusTextField.heightAnchor.constraint(equalToConstant: 30)
         ]
         NSLayoutConstraint.activate(constraintsForTextField)
 
-        showStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        showStatusButton.setTitle("Set Status", for: .normal)
-        showStatusButton.backgroundColor = .systemBlue
-        showStatusButton.layer.cornerRadius = 4
-        showStatusButton.layer.shadowColor = UIColor.black.cgColor
-        showStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-        showStatusButton.layer.shadowRadius = 4
-        showStatusButton.layer.shadowOpacity = 0.7
-        self.addSubview(showStatusButton)
+        setStatusButton.setTitle("Set Status", for: .normal)
+        setStatusButton.backgroundColor = .systemBlue
+        setStatusButton.layer.cornerRadius = 4
+        setStatusButton.layer.shadowColor = UIColor.black.cgColor
+        setStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+        setStatusButton.layer.shadowRadius = 4
+        setStatusButton.layer.shadowOpacity = 0.7
+        setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        self.addSubview(setStatusButton)
 
-        showStatusButton.translatesAutoresizingMaskIntoConstraints = false
+        setStatusButton.translatesAutoresizingMaskIntoConstraints = false
         let constraintsForButton = [
-            showStatusButton.topAnchor.constraint(equalTo: self.textField.bottomAnchor, constant: 10),
-            showStatusButton.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            showStatusButton.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50)
+            setStatusButton.topAnchor.constraint(equalTo: self.statusTextField.bottomAnchor, constant: 10),
+            setStatusButton.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            setStatusButton.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50)
         ]
         NSLayoutConstraint.activate(constraintsForButton)
 
 
     }
     @objc func buttonPressed(sender: UIButton) {
-            if let status = statusTextView.text {
-            print(status)
-            } else {
-                print("No value found")
+        if statusText == "" {
+            statusTextView.text = "Waiting for something..."
+        } else {
+                statusTextView.text = statusText
             }
         }
+
+    @objc func statusTextChanged(_ textField: UITextField) {
+        if let status = textField.text {
+            statusText = status
+        } else {
+            statusText = ""
+        }
+    }
 }
