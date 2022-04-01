@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		641A5D4C27F74B7500EC3DCB /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641A5D4B27F74B7500EC3DCB /* LogInViewController.swift */; };
 		642C4E0527B4404F00F72321 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C4E0427B4404F00F72321 /* AppDelegate.swift */; };
 		642C4E0727B4404F00F72321 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C4E0627B4404F00F72321 /* SceneDelegate.swift */; };
 		642C4E0927B4404F00F72321 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C4E0827B4404F00F72321 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		641A5D4B27F74B7500EC3DCB /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		642C4E0127B4404F00F72321 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		642C4E0427B4404F00F72321 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		642C4E0627B4404F00F72321 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				64DACCED27BEB086004C5FC3 /* ProfileHeaderView.swift */,
 				64DACCEF27BEB0C8004C5FC3 /* ProfileViewController.swift */,
+				641A5D4B27F74B7500EC3DCB /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			files = (
 				642C4E0927B4404F00F72321 /* ViewController.swift in Sources */,
 				642C4E6127B53C1C00F72321 /* PostViewController.swift in Sources */,
+				641A5D4C27F74B7500EC3DCB /* LogInViewController.swift in Sources */,
 				642C4E6327B5419F00F72321 /* Post.swift in Sources */,
 				642C4E6527B545A600F72321 /* InfoViewController.swift in Sources */,
 				642C4E5B27B533EB00F72321 /* TabBarController.swift in Sources */,

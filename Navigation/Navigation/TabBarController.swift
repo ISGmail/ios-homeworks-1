@@ -33,7 +33,7 @@ class TabBarController: UITabBarController {
     func setupVCs() {
           viewControllers = [
             createNavigationController(for: FeedViewController(), title: NSLocalizedString("Newsfeed", comment: ""), image: UIImage(systemName: "house")!),
-            createNavigationController(for: ProfileViewController(), title: NSLocalizedString("Profile", comment: ""), image: UIImage(systemName: "person")!)
+            createNavigationController(for: LogInViewController(), title: NSLocalizedString("Profile", comment: ""), image: UIImage(systemName: "person")!)
           ]
       }
 }
