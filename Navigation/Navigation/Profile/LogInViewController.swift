@@ -28,7 +28,7 @@ class LogInViewController: UIViewController {
         return logoImage
     }()
 
-    private lazy var loginTextField: UITextField = {
+    lazy var loginTextField: UITextField = {
         let loginTextField = UITextField()
         loginTextField.placeholder = "Email or phone"
         loginTextField.textColor = .black
@@ -39,7 +39,7 @@ class LogInViewController: UIViewController {
         return loginTextField
     }()
 
-    private lazy var passwordTextField: UITextField = {
+    lazy var passwordTextField: UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.placeholder = "Password"
         passwordTextField.textColor = .black
@@ -74,6 +74,7 @@ class LogInViewController: UIViewController {
         button.setBackgroundImage(pixel, for: .normal)
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -84,6 +85,25 @@ class LogInViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         setupViews()
         activateViewConstraints()
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(kbdShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        nc.addObserver(self, selector: #selector(kbdHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        let nc = NotificationCenter.default
+        nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     private func setupViews() {
@@ -124,5 +144,32 @@ class LogInViewController: UIViewController {
             loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+
+    @objc private func kbdShow(notification: NSNotification) {
+        if let kbdSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = kbdSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbdSize.height, right: 0)
+        }
+    }
+
+    @objc private func kbdHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
+    }
+
+    @objc private func buttonTapped() {
+        let profileViewController = ProfileViewController()
+        navigationController?.pushViewController(profileViewController, animated: true)
+        if loginTextField.text != "" {
+            loginTextField.text = ""
+        }
+        if passwordTextField.text != "" {
+            passwordTextField.text = ""
+        }
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
