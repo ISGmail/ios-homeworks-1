@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileTableHeaderView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,7 +59,7 @@ class ProfileHeaderView: UIView {
         ]
         NSLayoutConstraint.activate(constraintsForTitle)
 
-        statusTextView.backgroundColor = .lightGray
+        statusTextView.backgroundColor = .systemGray6
         statusTextView.font = .systemFont(ofSize: 14)
         statusTextView.textColor = .gray
         statusTextView.text = "Waiting for something..."
@@ -89,7 +89,6 @@ class ProfileHeaderView: UIView {
         statusTextField.clearButtonMode = .always
         statusTextField.layer.cornerRadius = 7
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-    //        textField.alpha = 0
         self.addSubview(statusTextField)
 
 
