@@ -26,6 +26,9 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(profileTableView)
         activateViewConstraints()
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
 
     private func activateViewConstraints() {
@@ -37,6 +40,44 @@ class ProfileViewController: UIViewController {
         ]
 
         NSLayoutConstraint.activate(constraints)
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(kbdShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        nc.addObserver(self, selector: #selector(kbdHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        let nc = NotificationCenter.default
+        nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc private func kbdShow(notification: NSNotification) {
+        if let kbdSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            profileTableView.contentInset.bottom = kbdSize.height
+            profileTableView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbdSize.height, right: 0)
+
+            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardRectangle = keyboardFrame.cgRectValue
+                let keyboardHeight = keyboardRectangle.height
+                let contentOffset: CGPoint = notification.name == UIResponder.keyboardWillHideNotification ? .zero: CGPoint(x: 0, y: keyboardHeight)
+                self.profileTableView.contentOffset = contentOffset
+            }
+        }
+    }
+
+    @objc private func kbdHide(notification: NSNotification) {
+        profileTableView.contentInset.bottom = .zero
+        profileTableView.verticalScrollIndicatorInsets = .zero
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
